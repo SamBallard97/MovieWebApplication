@@ -8,9 +8,9 @@ namespace MovieWebApplication.Controllers
     [Route("movies")]
     public class MovieController
     {
-        private IMovie _movie;
+        private IMovieService _movie;
 
-        public MovieController(IMovie movie)
+        public MovieController(IMovieService movie)
         {
             _movie = movie;
         }

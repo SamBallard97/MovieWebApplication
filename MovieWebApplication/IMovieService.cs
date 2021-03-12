@@ -2,7 +2,7 @@
 
 namespace MovieWebApplication
 {
-    public interface IMovie
+    public interface IMovieService
     {
         List<Movie> GetAllMovies();
     }
