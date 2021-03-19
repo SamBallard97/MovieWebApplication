@@ -8,11 +8,11 @@ namespace MovieWebApplication.Controllers
     [Route("movies")]
     public class MovieController
     {
-        private IMovieService _movie;
+        private readonly IMovieService _movieService;
 
-        public MovieController(IMovieService movie)
+        public MovieController(IMovieService movieService)
         {
-            _movie = movie;
+            _movieService = movieService;
         }
 
         [HttpGet("Greeting")]
@@ -27,7 +27,7 @@ namespace MovieWebApplication.Controllers
         [HttpGet("all")]
         public List<Movie> GetAllMovies()
         {
-            return _movie.GetAllMovies();
+            return _movieService.GetAllMovies();
         }
 
     }
