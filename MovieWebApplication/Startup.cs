@@ -4,6 +4,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using MovieWebApplication.Services;
+using System;
 
 namespace MovieWebApplication
 {
@@ -20,6 +21,7 @@ namespace MovieWebApplication
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+            services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
             services.AddSingleton<IMovieService, MovieService>();
             services.AddSingleton<IElephantService, ElephantService>();
         }

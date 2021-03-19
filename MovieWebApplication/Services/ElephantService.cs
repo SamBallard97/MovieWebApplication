@@ -25,16 +25,23 @@ namespace MovieWebApplication.Services
             return elephants;
         }
 
-        public Elephant AddElephant(ElephantRequest elephantToAdd)
+        public Elephant AddElephant(ElephantRequest elephantToAdd, string filepath)
         {
             // Convert to Model
             var elephant = _mapper.Map<Elephant>(elephantToAdd);
             elephant.Id = Guid.NewGuid();
 
+            // Add to List
+            var elephants = GetElephants(filepath);
+            elephants.Add(elephant);
 
-            // Add to Json
+            // Conver to Json & Write to file
+            var json = JsonSerializer.Serialize(elephants);
+            File.WriteAllText(filepath, json);
 
             return elephant;
         }
+
+
     }
 }

@@ -6,6 +6,6 @@ namespace MovieWebApplication.Services
     public interface IElephantService
     {
         List<Elephant> GetElephants(string filepath);
-        Elephant AddElephant(ElephantRequest elephantToAdd);
+        Elephant AddElephant(ElephantRequest elephantToAdd, string filepath);
     }
 }
