@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using MovieWebApplication.Services;
 
 namespace MovieWebApplication
 {
@@ -20,6 +21,7 @@ namespace MovieWebApplication
         {
             services.AddControllers();
             services.AddSingleton<IMovieService, MovieService>();
+            services.AddSingleton<IElephantService, ElephantService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
