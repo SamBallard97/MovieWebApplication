@@ -52,17 +52,25 @@ namespace MovieWebApplication.Controllers
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public ActionResult AddElephant([FromBody]ElephantRequest addElephantRequest)
         {
-            var addedElephant = _elephantService.AddElephant(addElephantRequest);
+            var addedElephant = _elephantService.AddElephant(addElephantRequest, FILEPATH);
 
             if(addedElephant != null)
             {
                 return Ok(addedElephant);
-            } else
+            }
+            else
             {
                 return NotFound();
             }
         }
 
-        //http delete
+        [HttpDelete]
+        public ActionResult DeleteElephant(Guid elephantId)
+        {
+            var isDeleted = _elephantService.DeleteElephant(elephantId, FILEPATH);
+
+            return NoContent();
+        }
+
     }
 }

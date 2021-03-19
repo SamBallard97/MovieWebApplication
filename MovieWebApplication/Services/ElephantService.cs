@@ -42,6 +42,15 @@ namespace MovieWebApplication.Services
             return elephant;
         }
 
+        public void DeleteElephant(Guid elephantId, string filepath)
+        {
+            // Get list of Elephants
+            var elephants = GetElephants(filepath);
+            elephants.RemoveAll(x => x.Id == elephantId);
 
+            // Convert to Json & Write to file
+            var json = JsonSerializer.Serialize(elephants);
+            File.WriteAllText(filepath, json);
+        }
     }
 }
