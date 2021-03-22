@@ -14,6 +14,7 @@ namespace MovieWebApplication.Controllers
     {
         private readonly IElephantService _elephantService;
         private const string FILEPATH = "C:\\Users\\sam.ballard\\Documents\\Northcoders\\Files\\elephants.json";
+        private const string FILEPATH_TEST = "C:\\Users\\sam.ballard\\Documents\\Northcoders\\Files\\elephantsTestData.json";
 
         public ElephantController(IElephantService elephantService)
         {
@@ -21,9 +22,18 @@ namespace MovieWebApplication.Controllers
         }
 
         [HttpGet]
-        public List<Elephant> GetElephants()
+        public List<Elephant> GetElephants(bool isTest)
         {
-            var elephants = _elephantService.GetElephants(FILEPATH);
+            var elephants = new List<Elephant>();
+
+            if (isTest)
+            {
+                elephants = _elephantService.GetElephants(FILEPATH_TEST);
+            }
+            else
+            {
+                elephants = _elephantService.GetElephants(FILEPATH);
+            }
 
             return elephants;
         }
@@ -33,7 +43,7 @@ namespace MovieWebApplication.Controllers
         [HttpGet("{elephantId:Guid}")]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(Elephant))]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public ActionResult GetElephant(Guid elephantId)
+        public ActionResult<Elephant> GetElephant(Guid elephantId)
         {
             var elephant = _elephantService.GetElephants(FILEPATH).Where(x => x.Id == elephantId)?.FirstOrDefault() ?? null;
 
@@ -67,7 +77,7 @@ namespace MovieWebApplication.Controllers
         [HttpDelete]
         public ActionResult DeleteElephant(Guid elephantId)
         {
-            var isDeleted = _elephantService.DeleteElephant(elephantId, FILEPATH);
+            _elephantService.DeleteElephant(elephantId, FILEPATH);
 
             return NoContent();
         }

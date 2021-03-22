@@ -8,6 +8,6 @@ namespace MovieWebApplication.Services
     {
         List<Elephant> GetElephants(string filepath);
         Elephant AddElephant(ElephantRequest elephantToAdd, string filepath);
-        Elephant DeleteElephant(Guid elepgantId, string filepath);
+        void DeleteElephant(Guid elepgantId, string filepath);
     }
 }
