@@ -6,7 +6,6 @@ using MovieWebApplication.Models;
 using MovieWebApplication.Services;
 using System;
 using System.Collections.Generic;
-using System.Net;
 using Xunit;
 
 namespace MovieWebApplicationTests.UnitTests
@@ -38,7 +37,7 @@ namespace MovieWebApplicationTests.UnitTests
 
 
             // arrange
-            _elephantService.Setup(x => x.GetElephants(It.IsAny<string>())).Returns(elephants);
+            _elephantService.Setup(x => x.GetElephants(It.IsAny<string>())).ReturnsAsync(elephants);
             var controller = new ElephantController(_elephantService.Object);
 
 
@@ -80,7 +79,7 @@ namespace MovieWebApplicationTests.UnitTests
             elephantList.Add(incorrectElephant1);
             elephantList.Add(incorrectElephant2);
             var controller = new ElephantController(_elephantService.Object);
-            _elephantService.Setup(x => x.GetElephants(It.IsAny<string>())).Returns(elephantList);
+            _elephantService.Setup(x => x.GetElephants(It.IsAny<string>())).ReturnsAsync(elephantList);
 
             //act
             var response = controller.GetElephant(searchedGuid);
@@ -116,7 +115,7 @@ namespace MovieWebApplicationTests.UnitTests
             elephantList.Add(incorrectElephant1);
             elephantList.Add(incorrectElephant2);
             var controller = new ElephantController(_elephantService.Object);
-            _elephantService.Setup(x => x.GetElephants(It.IsAny<string>())).Returns(elephantList);
+            _elephantService.Setup(x => x.GetElephants(It.IsAny<string>())).ReturnsAsync(elephantList);
 
             //act
             var response = controller.GetElephant(searchedGuid);
@@ -136,7 +135,7 @@ namespace MovieWebApplicationTests.UnitTests
             //arrange
             var elephantList = new List<Elephant>();
             var controller = new ElephantController(_elephantService.Object);
-            _elephantService.Setup(x => x.GetElephants(It.IsAny<string>())).Returns(elephantList);
+            _elephantService.Setup(x => x.GetElephants(It.IsAny<string>())).ReturnsAsync(elephantList);
 
             //act
             var response = controller.GetElephant(Guid.NewGuid());

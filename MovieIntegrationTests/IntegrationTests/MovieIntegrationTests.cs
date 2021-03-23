@@ -18,14 +18,14 @@ namespace MovieIntegrationTests
             _client = fixture.CreateClient();
         }
 
-        [Fact]
-        public async Task GetAllMovies_ReturnsList()
-        {
-            //arrange + act
-            var response = await _client.GetAsync("movies/all");
+        //[Fact]
+        //public async Task GetAllMovies_ReturnsList()
+        //{
+        //    //arrange + act
+        //    var response = await _client.GetAsync("movies/all");
 
-            //assert
-            Assert.Equal(HttpStatusCode.OK, response.StatusCode);
-        }
+        //    //assert
+        //    Assert.Equal(HttpStatusCode.OK, response.StatusCode);
+        //}
     }
 }

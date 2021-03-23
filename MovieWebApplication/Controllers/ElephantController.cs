@@ -28,11 +28,11 @@ namespace MovieWebApplication.Controllers
 
             if (isTest)
             {
-                elephants = _elephantService.GetElephants(FILEPATH_TEST);
+                elephants = _elephantService.GetElephants(FILEPATH_TEST).Result;
             }
             else
             {
-                elephants = _elephantService.GetElephants(FILEPATH);
+                elephants = _elephantService.GetElephants(FILEPATH).Result;
             }
 
             return elephants;
@@ -45,7 +45,7 @@ namespace MovieWebApplication.Controllers
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public ActionResult<Elephant> GetElephant(Guid elephantId)
         {
-            var elephant = _elephantService.GetElephants(FILEPATH).Where(x => x.Id == elephantId)?.FirstOrDefault() ?? null;
+            var elephant = _elephantService.GetElephants(FILEPATH).Result.Where(x => x.Id == elephantId)?.FirstOrDefault() ?? null;
 
             if (elephant != null)
             {
